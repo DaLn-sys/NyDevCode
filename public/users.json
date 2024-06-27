@@ -1,0 +1,22 @@
+[
+    {
+        "id":1,
+        "username":"admin",
+        "password":"123",
+        "role":{
+            "roleName":"管理员",
+            "roleType":1,
+            "rights":[
+                "/index",
+                "/user-manage",
+                "/user-manage/list",
+                "/right-manage",
+                "/right-manage/rightlist",
+                "/device-manage",
+                "/device-manage/devicelist",
+                "/device-manage/smartdevice"
+            ]
+        }
+
+    }
+]
