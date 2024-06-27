@@ -1,0 +1,61 @@
+[
+
+    {
+        "title":"首页",
+        "path":"/index",
+        "icon":"PageFilled",
+        "children":[]
+    },
+    {
+        "title":"用户管理",
+        "path":"/user-manage",
+        "icon":"User",
+        "children":[
+            {
+                "title":"用户列表",
+                "path":"/user-manage/list",
+                "icon":"list"
+                
+            }
+        ]
+    },
+
+    {
+        "title":"权限管理",
+        "path":"/right-manage",
+        "icon":"Key",
+        "children":[
+            {
+                "title":"权限列表",
+                "path":"/right-manage/rightlist",
+                "icon":"List"
+                
+            }
+        ]
+    },
+    {
+        "title":"设备管理",
+        "path":"/device-manage",
+        "icon":"Device",
+        "children":[
+            {
+                "title":"设备列表",
+                "path":"/device-manage/devicelist",
+                "icon":"List"
+                
+            },
+            {
+                "title":"增加设备",
+                "path":"/device-manage/adddevice",
+                "icon":"List"
+                
+            },
+            {
+                "title":"智能管理",
+                "path":"/device-manage/smartdevice",
+                "icon":"List"
+                
+            }
+        ]
+    }
+]
