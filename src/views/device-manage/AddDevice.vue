@@ -9,6 +9,17 @@
     </el-table-column>
     <el-table-column label="购入日期" prop="date" />
     <el-table-column label="所在位置" prop="address" />
+
+<!-- 设备细节页面跳转 -->
+    <el-table-column label="操作设备" prop="deviceurl">
+      <template #default="scope">
+        <el-link :href="scope.row.deviceurl">
+          {{ scope.row.deviceurl }}
+        </el-link>
+
+      </template>
+    </el-table-column>
+
     <el-table-column align="right">
       <template #header>
         <el-input v-model="search" size="default" placeholder="Type to search" />
@@ -17,9 +28,11 @@
         <el-button size="default" @click="handleEdit(scope.$index, scope.row)">
           更新
         </el-button>
+       
         <el-button size="default" type="danger" @click="handleDelete(scope.$index, scope.row)">
           删除
         </el-button>
+
       </template>
     </el-table-column>
   </el-table>
@@ -29,6 +42,7 @@
   <el-dialog v-model="dialogVisible" title="设备详情" :fullscreen="true">
     <div>
       <devicedetail>
+        
 
       </devicedetail>
 
@@ -58,6 +72,7 @@ const filterTableData = computed(() =>
 const handleEdit = (index: number, row: User) => {
   console.log(index, row)
 }
+
 const handleDelete = (index: number, row: User) => {
   console.log(index, row)
 }
@@ -68,41 +83,50 @@ const tableData: User[] = [
     date: '2024-06-24',
     devicename: '空调',
     address: '客厅',
+    
   },
   {
     date: '2024-06-24',
     devicename: '冰箱',
     address: '厨房',
+   
   },
   {
     date: '2024-06-24',
     devicename: '窗帘',
     address: '客厅',
+
   },
   {
     date: '2024-06-24',
     devicename: '台灯',
     address: '卧室',
+
   },
 
   {
     date: '2024-06-24',
     devicename: '洗衣机',
     address: '卫生间',
+ 
   },
   {
     date: '2024-06-24',
     devicename: '油烟机',
     address: '厨房',
+
   },
 ]
 
 //预览
 const dialogVisible = ref(false)
 const jump = (item) => {
+
   dialogVisible.value = true
   currentItem.value = item
 
 }
+
+
 const currentItem = ref({})
 </script>

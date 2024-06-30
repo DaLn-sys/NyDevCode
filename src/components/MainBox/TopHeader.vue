@@ -30,7 +30,10 @@
 
       </template>
 
-      <div class="current-time" style="margin-top: 20px;margin-bottom: 20px;font-weight: bold;position: absolute;right: 260px;">{{ time.currentTime }}</div>
+      <div class="current-time"
+        style="margin-top: 20px;margin-bottom: 20px;font-weight: bold;position: absolute;right: 260px;">{{
+          time.currentTime }}
+      </div>
 
       <!-- mqtt -->
       <div>
@@ -111,38 +114,42 @@ const options = {
   password: "cyh991103",
 };
 
-const client = mqtt.connect('ws://broker.emqx.io:8083/mqtt', options)
-const publish_Topic = 'iot/my_pub';
-const subscribe_Topic = 'iot/my_sub';
+const client = mqtt.connect('ws://122.51.210.27:8083/mqtt', options)
+
+
 
 // 连接事件处理
-
 client.on('connect', function () {
   status.mqttConnectionStatus = "已连接"
   console.log('连接成功');
+
   // 订阅主题
-  client.subscribe(subscribe_Topic);
+  client.subscribe('hello', { qos: 0 }, (error) => {
+    if (!error) {
+      console.log('订阅成功')
+      client.publish('hello', 'Hello EMQ', { qos: 1, rein: false }, (error) => {
+        console.log(error || '发布成功')
+      })
+    } else {
+      console.log('订阅失败')
+    }
+  })
 });
 
-client.on("reconnect", () => {
+client.on("reconnect", (error) => {
   status.mqttConnectionStatus = "正在重连"
-  console.log("正在重连")
+  console.log("正在重连", error)
 })
 client.on("error", (error) => {
   status.mqttConnectionStatus = "连接失败"
   console.log("连接失败", error)
 })
+
 //监听消息
-client.on('message', function (topic, message) {
-  console.log("收到信息：" + message)
-  update_Status(message.toString());
+client.on('message', (topic, message) => {
+  console.log('收到来自', topic, '的消息', message.toString())
 });
 
-// 发布 MQTT 消息
-function sendCommand(command) {
-  mqttClient.publish(publish_Topic, command);
-  console.log('已发送 MQTT 消息：', command);
-}
 
 
 
@@ -150,7 +157,7 @@ const route = useRoute()
 
 const circleUrl = "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
 
-
+// 权限列表的获取
 const datalist = ref([])
 
 onMounted(
@@ -163,8 +170,6 @@ const handleSelect = async () => {
   var res = await axios.get("/right.json")
   console.log(res.date)
   datalist.value = res.data
-
-
 }
 
 const { changeUser, user } = useUserStore()
