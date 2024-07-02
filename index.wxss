@@ -1,0 +1,192 @@
+/* 整体容器样式 */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #83bceba2;/* 背景颜色 */
+}
+/* 可滚动视图容器样式 */
+.scroll-container {
+  flex: 1;
+  padding: 20rpx;/* 内边距 */
+}
+/* 头部样式 */
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50rpx;/* 底边距 */
+}
+
+.avatar {
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 100rpx;/* 右边距 */
+}
+
+.welcome-text {
+  color: #ffffff;/* 字体颜色 */
+}
+/* 标题样式 */
+.title {
+  text-align: center;
+  font-size: 48rpx;
+  margin: 32rpx 0;
+  color: #ffffff;
+}
+/* 信息卡片容器样式 */
+.info-cards {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40rpx;
+}
+/* 信息卡片样式 */
+.info-card {
+  width: 30%;
+  padding: 20rpx;
+  background-color: #ffffff;
+  text-align: center;
+  position: relative;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);/* 阴影效果 */
+}
+
+.info-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.info-text {
+  font-size: 32rpx;
+  margin-top: 20rpx;
+}
+/* 状态显示容器样式 */
+.status {
+  margin-top: 40rpx;
+  color: #ffffff;
+}
+
+.status-title {
+  margin-bottom: 20rpx;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.status-value {
+  flex: 1;
+  text-align: center;
+}
+
+.status-indicator {
+  width: 20rpx;
+  height: 20rpx;
+  background-color: green;
+  border-radius: 50%;/* 圆角效果 */
+  margin-left: 20rpx;
+}
+/* 按钮组样式 */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+}
+
+.button {
+  flex: 1;
+  margin: 0 10rpx;
+  padding: 20rpx;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 10rpx;
+}
+/* 图表容器样式 */
+.chart-container {
+  margin-top: 40rpx;
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 20rpx;
+}
+/* 底部导航栏样式 */
+.navbar {
+  display: flex;
+  justify-content: space-around;/* 等间距分布 */
+  padding: 20rpx 0;
+  background-color: #4caf50;
+  color: white;
+}
+
+.nav-item {
+  flex: 1;
+  text-align: center;
+}
+
+.nav-icon {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin: 0 auto 10rpx;
+}
+
+.nav-item text {
+  display: block;
+  margin-top: 10rpx;
+}
+
+/* MQTT */
+.container {
+  padding-top: 52rpx;
+  overflow-x: hidden;
+  z-index: 1;
+}
+ 
+.user-avatar {
+  margin: 20rpx 0 20rpx 60rpx;
+}
+ 
+.user-avatar-shadow {
+  box-shadow: 0 8rpx 16rpx 0 rgba(0, 0, 0, 0.23), 0 12rpx 30rpx 0 rgba(0, 0, 0, 0.22);
+}
+ 
+.user-nickname {
+  padding: 54rpx 0 0 20rpx;
+  font-size: 36rpx;
+  width: 600rpx;
+}
+ 
+.user-menu {
+  padding-top: 50rpx;
+}
+ 
+.user-load {
+  width: calc(100% - 64rpx);
+  padding: 40rpx 32rpx;
+  border-radius: 40rpx;
+  overflow: hidden;
+}
+ 
+.user-load-notic {
+  padding: 0 0 40rpx 30rpx;
+}
+ 
+.user-load-title {
+  font-size: 26rpx;
+  padding-bottom: 20rpx;
+}
+ 
+.user-load-list {
+  font-size: 24rpx;
+  color: gray;
+  padding: 0 0 10rpx 4rpx;
+}
+ 
+.user-load-button {
+  width: calc(100% - 96rpx);
+  padding-left: 48rpx;
+}

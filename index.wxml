@@ -1,0 +1,81 @@
+<view class="container">
+  <!-- 可滚动视图区域 -->
+  <scroll-view scroll-y="true" class="scroll-container">
+      <!-- 头部区域 -->
+    <view class="header">
+      <image src="/images/admin.png" class="avatar"/>
+      <text class="welcome-text">Hi, admin</text>
+    </view>
+   <!-- 标题 -->
+    <view class="title">厂中厂安全用电侧监控</view>
+   <!-- 信息卡片区域 -->
+    <view class="info-cards">
+    <!-- 电流信息卡片 -->
+      <view class="info-card">
+        <image src="/images/current.webp" mode="widthFix" class="info-icon"/>
+        <text class="info-text">电流 50A</text>
+      </view>
+      <!-- 功率信息卡片 -->
+      <view class="info-card">
+        <image src="/images/power.webp" mode="widthFix" class="info-icon"/>
+        <text class="info-text">功率 240W</text>
+      </view>
+      <!-- 温度信息卡片 -->
+      <view class="info-card">
+        <image src="/images/temp.webp" mode="widthFix" class="info-icon"/>
+        <text class="info-text">温度 30℃</text>
+      </view>
+    </view>
+    <!-- 状态显示区域 -->
+    <view class="status">
+      <text class="status-title">状态：</text>
+      <view class="status-item">
+        <text>运行状态：</text>
+        <text class="status-value">空闲状态</text>
+        <view class="status-indicator"></view>
+      </view>
+      <view class="status-item">
+        <text>工作模式：</text>
+        <text class="status-value">自动模式</text>
+        <view class="status-indicator"></view>
+      </view>
+      <view class="button-group">
+        <button class="button">一键总断路</button>
+        <button class="button">各键分断路</button>
+      </view>
+    </view>
+    <!-- 能耗情况图表 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@latest/dist/echarts.min.js"></script>
+    <view class="chart-container">
+      <text>能耗情况：</text>
+      <ec-canvas canvas-id="energyCanvas" style="width: 100%; height: 300rpx;"></ec-canvas>
+    </view>
+  </scroll-view>
+</view>
+
+  <!-- MQTT -->
+<view class="container">
+  <view class="label">连接地址（域名）：</view>
+  <input bindinput="setHost" value="{{ host }}" />
+  <view class="is-flex">
+    <button type="primary" bindtap="connect">{{ conenctBtnText }}</button>
+    <button type="warn" disabled="{{ conenctBtnText === '连接' }}" bindtap="disconnect">断开连接</button>
+  </view>
+  <view class="label">订阅主题：</view>
+  <input bindinput="setSubTopic" value="{{ subTopic }}" />
+  <view class="is-flex">
+    <button type="primary" bindtap="subscribe">订阅</button>
+    <button type="warn" bindtap="unsubscribe">取消订阅</button>
+  </view>
+  <view class="label">发布主题：</view>
+  <input bindinput="setPubTopic" value="{{ pubTopic }}" />
+  <view class="label">发布消息：</view>
+  <input bindinput="setPubMsg" value="{{ pubMsg }}"></input>
+  <view class="is-flex">
+    <button type="primary" bindtap="publish">发布</button>
+  </view>
+  <view class="label">收到的消息：</view>
+  <view class="received-msg-box">
+    <rich-text nodes="{{receivedMsg }}"></rich-text>
+  </view>
+</view>
