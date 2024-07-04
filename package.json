@@ -19,6 +19,7 @@
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
     "sass": "^1.77.4",
+    "text-encoding": "^0.7.0",
     "tsparticles": "^3.4.0",
     "vue": "^3.4.30",
     "vue-echarts": "^6.7.3",

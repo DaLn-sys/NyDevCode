@@ -1,132 +1,57 @@
 <template>
-  <el-table :data="filterTableData" style="width: 100%">
-    <el-table-column label="设备名称" prop="devicename">
-      <template #default="scope">
-        <el-link type="primary" @click="jump(scope.row)">{{ scope.row.devicename }}
+  <!-- 设备名称 -->
+  <el-form :model="form" label-width="auto" style="max-width: 600px">
+      <el-form-item label="设备名称">
+          <el-input v-model="form.devicename" />
+      </el-form-item>
+      <!-- 所处位置 -->
+      <el-form-item label="所处位置">
+          <el-select v-model="form.address" placeholder="请选择设备所处位置">
+              <el-option label="客厅" value="客厅" />
+              <el-option label="主卧" value="主卧" />
+              <el-option label="厨房" value="厨房" />
+              <el-option label="卫生间" value="卫生间" />
+              <el-option label="客卧" value="客卧" />
 
-        </el-link>
-      </template>
-    </el-table-column>
-    <el-table-column label="购入日期" prop="date" />
-    <el-table-column label="所在位置" prop="address" />
+          </el-select>
+      </el-form-item>
+      <!-- 购入日期 -->
+   
+      <!-- 耗能等级 -->
+      <el-form-item label="耗能等级">
 
-<!-- 设备细节页面跳转 -->
-    <el-table-column label="操作设备" prop="deviceurl">
-      <template #default="scope">
-        <el-link :href="scope.row.deviceurl">
-          {{ scope.row.deviceurl }}
-        </el-link>
+          <el-radio-group v-model="form.type">
+              <el-radio :value="1">等级1</el-radio>
+              <el-radio :value="2">等级2</el-radio>
+              <el-radio :value="3">等级3</el-radio>
+          </el-radio-group>
+      </el-form-item>
 
-      </template>
-    </el-table-column>
-
-    <el-table-column align="right">
-      <template #header>
-        <el-input v-model="search" size="default" placeholder="Type to search" />
-      </template>
-      <template #default="scope">
-        <el-button size="default" @click="handleEdit(scope.$index, scope.row)">
-          更新
-        </el-button>
-       
-        <el-button size="default" type="danger" @click="handleDelete(scope.$index, scope.row)">
-          删除
-        </el-button>
-
-      </template>
-    </el-table-column>
-  </el-table>
-
-  <!-- 全屏dialog展示设备详情 -->
-
-  <el-dialog v-model="dialogVisible" title="设备详情" :fullscreen="true">
-    <div>
-      <devicedetail>
-        
-
-      </devicedetail>
-
-
-    </div>
-
-  </el-dialog>
+      <el-form-item>
+          <el-button type="primary" @click="onSubmit">确定</el-button>
+          <el-button>取消</el-button>
+      </el-form-item>
+  </el-form>
 </template>
 
-<script lang="ts" setup>
-import { computed, ref } from 'vue'
+<script setup>
+import { reactive } from 'vue'
+import useDevicesStore from '../../store/useDevicesStore'
+import { useRouter } from 'vue-router'
 
-interface User {
-  date: string
-  devicename: string
-  address: string
+// do not use same name with ref
+const form = reactive({
+  devicename: '',
+  address: '',
+  type: '',
+})
+
+const store = useDevicesStore()
+const router = useRouter()
+//提交
+const onSubmit = () => {
+  console.log('submit!', form)
+  store.add(form)
+  router.push('/device-manage/DeviceList')
 }
-
-const search = ref('')
-const filterTableData = computed(() =>
-  tableData.filter(
-    (data) =>
-      !search.value ||
-      data.devicename.toLowerCase().includes(search.value.toLowerCase())
-  )
-)
-const handleEdit = (index: number, row: User) => {
-  console.log(index, row)
-}
-
-const handleDelete = (index: number, row: User) => {
-  console.log(index, row)
-}
-
-
-const tableData: User[] = [
-  {
-    date: '2024-06-24',
-    devicename: '空调',
-    address: '客厅',
-    
-  },
-  {
-    date: '2024-06-24',
-    devicename: '冰箱',
-    address: '厨房',
-   
-  },
-  {
-    date: '2024-06-24',
-    devicename: '窗帘',
-    address: '客厅',
-
-  },
-  {
-    date: '2024-06-24',
-    devicename: '台灯',
-    address: '卧室',
-
-  },
-
-  {
-    date: '2024-06-24',
-    devicename: '洗衣机',
-    address: '卫生间',
- 
-  },
-  {
-    date: '2024-06-24',
-    devicename: '油烟机',
-    address: '厨房',
-
-  },
-]
-
-//预览
-const dialogVisible = ref(false)
-const jump = (item) => {
-
-  dialogVisible.value = true
-  currentItem.value = item
-
-}
-
-
-const currentItem = ref({})
 </script>

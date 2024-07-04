@@ -1,13 +1,20 @@
 <template>
   <div>
-
+    
   </div>
   <el-header>
-    <el-menu :default-active="route.fullPath" class="el-menu-demo" mode="horizontal" @select="handleSelect"
-      :router="true">
-
+    <el-menu
+      :default-active="route.fullPath"
+      class="el-menu-demo"
+      mode="horizontal"
+      @select="handleSelect"
+      :router="true"
+    >
       <template v-for="data in datalist" :key="data.path">
-        <el-sub-menu :index="data.path" v-if="data.children.length && checkAuth(data.path)">
+        <el-sub-menu
+          :index="data.path"
+          v-if="data.children.length && checkAuth(data.path)"
+        >
           <template #title>
             <span>{{ data.title }}</span>
           </template>
@@ -19,35 +26,61 @@
               </span>
             </el-menu-item>
           </template>
-
         </el-sub-menu>
 
         <el-menu-item :index="data.path" v-else-if="checkAuth(data.path)">
-
           <span>{{ data.title }}</span>
         </el-menu-item>
-
-
       </template>
 
-      <div class="current-time"
-        style="margin-top: 20px;margin-bottom: 20px;font-weight: bold;position: absolute;right: 260px;">{{
-          time.currentTime }}
+      <!-- 当前时间 -->
+      <div
+        class="current-time"
+        style="
+          margin-top: 20px;
+          margin-bottom: 20px;
+          font-weight: bold;
+          position: absolute;
+          right: 260px;
+        "
+      >
+        {{ time.currentTime }}
       </div>
 
       <!-- mqtt -->
       <div>
-        <span style="position: absolute;right: 200px;margin-top: 20px;margin-bottom: 20px;font-weight: bold;">
+        <span
+          style="
+            position: absolute;
+            right: 200px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+          "
+        >
           {{ status.mqttConnectionStatus }}
         </span>
       </div>
 
-
-      <span style="position: absolute;right: 70px;margin-top: 20px;margin-bottom: 20px;">
+      <span
+        style="
+          position: absolute;
+          right: 70px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+        "
+      >
         欢迎{{ user.username }}回来
       </span>
 
-      <el-dropdown style="position: absolute;right: 10px;margin-top: 10px;margin-bottom: 10px;">
+      <el-dropdown
+        style="
+          position: absolute;
+          right: 10px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        "
+      >
         <el-avatar :size="40" :src="circleUrl" />
         <span class="el-dropdown-link">
           Dropdown List
@@ -62,13 +95,7 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-
-
-
-
     </el-menu>
-
-
   </el-header>
 </template>
 
@@ -117,18 +144,17 @@ const options = {
 const client = mqtt.connect('ws://122.51.210.27:8083/mqtt', options)
 
 
-
 // 连接事件处理
 client.on('connect', function () {
   status.mqttConnectionStatus = "已连接"
   console.log('连接成功');
 
   // 订阅主题
-  client.subscribe('hello', { qos: 0 }, (error) => {
+  client.subscribe('123', { qos: 0 }, (error) => {
+    
     if (!error) {
       console.log('订阅成功')
-      client.publish('hello', 'Hello EMQ', { qos: 1, rein: false }, (error) => {
-        console.log(error || '发布成功')
+      client.publish('hello1', 'hello', { qos: 1, rein: false }, (error) => {
       })
     } else {
       console.log('订阅失败')
@@ -149,7 +175,6 @@ client.on("error", (error) => {
 client.on('message', (topic, message) => {
   console.log('收到来自', topic, '的消息', message.toString())
 });
-
 
 
 

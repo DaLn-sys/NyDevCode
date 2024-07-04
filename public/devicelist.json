@@ -1,39 +1,55 @@
 [
-    {
-      "date": "2024-06-24",
-      "devicename": "空调",
-      "address": "客厅"
-      
-    },
-    {
-     "date": "2024-06-24",
-      "devicename": "冰箱",
-      "address": "厨房"
-     
-    },
-    {
-      "date": "2024-06-24",
-      "devicename": "窗帘",
-      "address": "客厅"
-  
-    },
-    {
-      "date": "2024-06-24",
-      "devicename": "台灯",
-      "address": "卧室"
-  
-    },
-  
-    {
-      "date": "2024-06-24",
-      "devicename": "洗衣机",
-      "address": "卫生间"
-   
-    },
-    {
-     "date": "2024-06-24",
-      "devicename": "油烟机",
-      "address": "厨房"
-  
-    }
-  ]
+  {
+    "dataHeader": [
+      {
+        "lable": "设备名称",
+        "key": "devicename"
+      },
+      {
+        "lable": "购入日期",
+        "key": "date"
+      },
+      {
+        "lable": "所处位置",
+        "key": "address"
+      }
+    ]
+  },
+
+
+
+  {
+    "tableData": [
+      {
+        "date": "2024-06-24",
+        "devicename": "空调",
+        "address": "客厅"
+      },
+      {
+        "date": "2024-06-24",
+        "devicename": "冰箱",
+        "address": "厨房"
+      },
+      {
+        "date": "2024-06-24",
+        "devicename": "窗帘",
+        "address": "客厅"
+      },
+      {
+        "date": "2024-06-24",
+        "devicename": "台灯",
+        "address": "卧室"
+      },
+      {
+        "date": "2024-06-24",
+        "devicename": "洗衣机",
+        "address": "卫生间"
+      },
+      {
+        "date": "2024-06-24",
+        "devicename": "油烟机",
+        "address": "厨房"
+      }
+    ]
+  }
+]
